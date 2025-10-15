@@ -326,158 +326,93 @@
     updateCount();
   });
 </script>
-<!-- Part 5: Sponsors Section -->
-<section id="sponsors" style="padding:100px 50px; background:#0a0a0a;">
-  <h2 style="text-align:center; font-size:40px; color:#ff0055; margin-bottom:50px;" data-aos="fade-up">Our Sponsors</h2>
-  <div class="sponsors-container" style="display:flex; flex-wrap:wrap; justify-content:center; gap:50px;" data-aos="fade-up">
+<section id="countdown" style="padding:50px; background:#111; text-align:center;">
+  <h2 style="font-size:40px; color:#ff0055; margin-bottom:50px;">Upcoming Events</h2>
 
-    <!-- Sponsor 1 -->
-    <div class="sponsor-card" style="width:150px; height:100px; background:#1a1a1a; display:flex; justify-content:center; align-items:center; border-radius:15px; transition:0.3s;">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/TCS-Logo.svg" alt="TCS" style="max-width:100px; max-height:60px;">
+  <div class="countdown-container" style="display:flex; justify-content:center; gap:30px; flex-wrap:wrap;">
+
+    <!-- Mood Indigo -->
+    <div class="count-box" style="background:#1a1a1a; padding:20px; border-radius:15px; width:220px;">
+      <h3 style="color:#ff0055;">Mood Indigo</h3>
+      <div class="timer" id="timer-moodi" style="display:flex; justify-content:space-between; margin-top:10px;">
+        <div><p id="days-moodi" style="font-size:36px; color:#ff0055;">0</p><p style="color:#fff;">Days</p></div>
+        <div><p id="hours-moodi" style="font-size:36px; color:#ff0055;">0</p><p style="color:#fff;">Hours</p></div>
+        <div><p id="minutes-moodi" style="font-size:36px; color:#ff0055;">0</p><p style="color:#fff;">Min</p></div>
+        <div><p id="seconds-moodi" style="font-size:36px; color:#ff0055;">0</p><p style="color:#fff;">Sec</p></div>
+      </div>
     </div>
 
-    <!-- Sponsor 2 -->
-    <div class="sponsor-card" style="width:150px; height:100px; background:#1a1a1a; display:flex; justify-content:center; align-items:center; border-radius:15px; transition:0.3s;">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Infosys_logo.svg" alt="Infosys" style="max-width:100px; max-height:60px;">
+    <!-- Techfest -->
+    <div class="count-box" style="background:#1a1a1a; padding:20px; border-radius:15px; width:220px;">
+      <h3 style="color:#ff0055;">Techfest</h3>
+      <div class="timer" id="timer-techfest" style="display:flex; justify-content:space-between; margin-top:10px;">
+        <div><p id="days-techfest" style="font-size:36px; color:#ff0055;">0</p><p style="color:#fff;">Days</p></div>
+        <div><p id="hours-techfest" style="font-size:36px; color:#ff0055;">0</p><p style="color:#fff;">Hours</p></div>
+        <div><p id="minutes-techfest" style="font-size:36px; color:#ff0055;">0</p><p style="color:#fff;">Min</p></div>
+        <div><p id="seconds-techfest" style="font-size:36px; color:#ff0055;">0</p><p style="color:#fff;">Sec</p></div>
+      </div>
     </div>
 
-    <!-- Sponsor 3 -->
-    <div class="sponsor-card" style="width:150px; height:100px; background:#1a1a1a; display:flex; justify-content:center; align-items:center; border-radius:15px; transition:0.3s;">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/e/e1/Wipro_logo.svg" alt="Wipro" style="max-width:100px; max-height:60px;">
-    </div>
-
-    <!-- Sponsor 4 -->
-    <div class="sponsor-card" style="width:150px; height:100px; background:#1a1a1a; display:flex; justify-content:center; align-items:center; border-radius:15px; transition:0.3s;">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/0/0e/Capgemini_logo.svg" alt="Capgemini" style="max-width:100px; max-height:60px;">
+    <!-- E-Summit -->
+    <div class="count-box" style="background:#1a1a1a; padding:20px; border-radius:15px; width:220px;">
+      <h3 style="color:#ff0055;">E-Summit</h3>
+      <div class="timer" id="timer-esummit" style="display:flex; justify-content:space-between; margin-top:10px;">
+        <div><p id="days-esummit" style="font-size:36px; color:#ff0055;">0</p><p style="color:#fff;">Days</p></div>
+        <div><p id="hours-esummit" style="font-size:36px; color:#ff0055;">0</p><p style="color:#fff;">Hours</p></div>
+        <div><p id="minutes-esummit" style="font-size:36px; color:#ff0055;">0</p><p style="color:#fff;">Min</p></div>
+        <div><p id="seconds-esummit" style="font-size:36px; color:#ff0055;">0</p><p style="color:#fff;">Sec</p></div>
+      </div>
     </div>
 
   </div>
 </section>
 
-<style>
-  /* Sponsor hover animation */
-  .sponsor-card:hover {
-    transform: translateY(-10px) scale(1.1);
-    box-shadow: 0 0 20px #ff0055;
-  }
-
-  /* Responsive */
-  @media (max-width:768px){
-    .sponsors-container {gap:25px;}
-    .sponsor-card {width:120px; height:80px;}
-  }
-</style>
-
 <script>
-  // Optional: Rotate logos slowly using JS for subtle animation
-  const sponsorCards = document.querySelectorAll('.sponsor-card');
-  sponsorCards.forEach((card, index) => {
-    let angle = 0;
-    setInterval(()=>{
-      angle += 0.2;
-      card.style.transform = `rotateY(${angle}deg)`;
-    },50 + index*10); // slightly different speed for each card
-  });
-</script>
-<!-- Part 6: Countdown Timer Section -->
-<section id="countdown" style="padding:100px 50px; background:#111; text-align:center;">
-  <h2 style="font-size:40px; color:#ff0055; margin-bottom:50px;" data-aos="fade-up">Next Big Event</h2>
-  <div class="countdown-container" data-aos="fade-up" style="display:flex; justify-content:center; gap:30px; flex-wrap:wrap;">
-
-    <!-- Days -->
-    <div class="count-box" style="background:#1a1a1a; padding:30px; border-radius:15px; width:120px;">
-      <h3 id="days" style="font-size:36px; color:#ff0055;">0</h3>
-      <p style="color:#fff; font-size:14px;">Days</p>
-    </div>
-
-    <!-- Hours -->
-    <div class="count-box" style="background:#1a1a1a; padding:30px; border-radius:15px; width:120px;">
-      <h3 id="hours" style="font-size:36px; color:#ff0055;">0</h3>
-      <p style="color:#fff; font-size:14px;">Hours</p>
-    </div>
-
-    <!-- Minutes -->
-    <div class="count-box" style="background:#1a1a1a; padding:30px; border-radius:15px; width:120px;">
-      <h3 id="minutes" style="font-size:36px; color:#ff0055;">0</h3>
-      <p style="color:#fff; font-size:14px;">Minutes</p>
-    </div>
-
-    <!-- Seconds -->
-    <div class="count-box" style="background:#1a1a1a; padding:30px; border-radius:15px; width:120px;">
-      <h3 id="seconds" style="font-size:36px; color:#ff0055;">0</h3>
-      <p style="color:#fff; font-size:14px;">Seconds</p>
-    </div>
-
-  </div>
-
-  <!-- 3D rotating cube using Three.js -->
-  <canvas id="cubeCanvas" style="margin-top:50px; width:300px; height:300px;"></canvas>
-</section>
-
-<script>
-  // Countdown Timer
-  const targetDate = new Date("2025-12-01T10:00:00").getTime();
-  const daysEl = document.getElementById('days');
-  const hoursEl = document.getElementById('hours');
-  const minutesEl = document.getElementById('minutes');
-  const secondsEl = document.getElementById('seconds');
+  const events = {
+    "moodi": new Date("December 15, 2025 00:00:00").getTime(),
+    "techfest": new Date("December 22, 2025 00:00:00").getTime(),
+    "esummit": new Date("December 11, 2025 00:00:00").getTime()
+  };
 
   function updateCountdown(){
     const now = new Date().getTime();
-    const diff = targetDate - now;
+    for(const key in events){
+      const diff = events[key] - now;
+      if(diff <= 0){
+        document.getElementById(`days-${key}`).innerText = 0;
+        document.getElementById(`hours-${key}`).innerText = 0;
+        document.getElementById(`minutes-${key}`).innerText = 0;
+        document.getElementById(`seconds-${key}`).innerText = 0;
+        continue;
+      }
+      const days = Math.floor(diff/(1000*60*60*24));
+      const hours = Math.floor((diff%(1000*60*60*24))/(1000*60*60));
+      const minutes = Math.floor((diff%(1000*60*60))/(1000*60));
+      const seconds = Math.floor((diff%(1000*60))/1000);
 
-    const days = Math.floor(diff/(1000*60*60*24));
-    const hours = Math.floor((diff%(1000*60*60*24))/(1000*60*60));
-    const minutes = Math.floor((diff%(1000*60*60))/(1000*60));
-    const seconds = Math.floor((diff%(1000*60))/1000);
-
-    daysEl.innerText = days;
-    hoursEl.innerText = hours;
-    minutesEl.innerText = minutes;
-    secondsEl.innerText = seconds;
+      document.getElementById(`days-${key}`).innerText = days;
+      document.getElementById(`hours-${key}`).innerText = hours;
+      document.getElementById(`minutes-${key}`).innerText = minutes;
+      document.getElementById(`seconds-${key}`).innerText = seconds;
+    }
   }
 
+  updateCountdown(); // initial call
   setInterval(updateCountdown, 1000);
-
-  // Three.js 3D Rotating Cube
-  const cubeCanvas = document.getElementById('cubeCanvas');
-  const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(75, cubeCanvas.clientWidth/cubeCanvas.clientHeight, 0.1, 1000);
-  const renderer = new THREE.WebGLRenderer({canvas:cubeCanvas, alpha:true});
-  renderer.setSize(cubeCanvas.clientWidth, cubeCanvas.clientHeight);
-
-  const geometry = new THREE.BoxGeometry(2,2,2);
-  const material = new THREE.MeshStandardMaterial({color:0xff0055, metalness:0.6, roughness:0.2});
-  const cube = new THREE.Mesh(geometry, material);
-  scene.add(cube);
-
-  const light = new THREE.PointLight(0xffffff,1);
-  light.position.set(5,5,5);
-  scene.add(light);
-
-  camera.position.z = 5;
-
-  function animateCube(){
-    requestAnimationFrame(animateCube);
-    cube.rotation.x +=0.01;
-    cube.rotation.y +=0.01;
-    renderer.render(scene,camera);
-  }
-  animateCube();
-
-  window.addEventListener('resize', ()=>{
-    camera.aspect = cubeCanvas.clientWidth/cubeCanvas.clientHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize(cubeCanvas.clientWidth, cubeCanvas.clientHeight);
-  });
 </script>
 
 <style>
+  .countdown-container {gap:30px; display:flex; justify-content:center; flex-wrap:wrap;}
+  .count-box {background:#1a1a1a; padding:20px; border-radius:15px; width:220px;}
+  .timer div {text-align:center;}
   @media (max-width:768px){
-    .countdown-container {gap:20px;}
-    .count-box {width:100px; padding:20px;}
+    .countdown-container {flex-direction:column; gap:20px;}
+    .count-box {width:100%;}
   }
 </style>
+
+
+
 <!-- Part 7: Contact Section -->
 <section id="contact" style="padding:100px 50px; background:#0a0a0a;">
   <h2 style="text-align:center; font-size:40px; color:#ff0055; margin-bottom:50px;" data-aos="fade-up">Contact Us</h2>
@@ -528,16 +463,27 @@
   <h3 style="color:#ff0055; margin-bottom:20px;" data-aos="fade-up">Connect with Us</h3>
 
   <div class="social-icons" style="display:flex; justify-content:center; gap:30px;" data-aos="fade-up" data-aos-delay="100">
-    <a href="https://www.facebook.com/IITBombay" target="_blank" style="color:#fff; font-size:24px; transition:0.3s;"><i class="fab fa-facebook-f"></i></a>
-    <a href="https://www.twitter.com/IITBombay" target="_blank" style="color:#fff; font-size:24px; transition:0.3s;"><i class="fab fa-twitter"></i></a>
-    <a href="https://www.instagram.com/iitbombay" target="_blank" style="color:#fff; font-size:24px; transition:0.3s;"><i class="fab fa-instagram"></i></a>
-    <a href="https://www.linkedin.com/school/iit-bombay/" target="_blank" style="color:#fff; font-size:24px; transition:0.3s;"><i class="fab fa-linkedin-in"></i></a>
-    <a href="https://www.instagram.com/gurutatkari_007?igsh=MTBjaW95MDQ2c2JsNA==" target="_blank" style="color:#fff; text-decoration:none;">
-  <i class="fab fa-instagram"></i> @guru madarchod
+    <a href="https://www.facebook.com/IITBombay" target="_blank" style="color:#fff; font-size:24px; transition:0.3s;"><i class="fab fa-facebook-f"></i> @iitb facebook</a>
+    <a href="https://www.twitter.com/IITBombay" target="_blank" style="color:#fff; font-size:24px; transition:0.3s;"><i class="fab fa-twitter"></i>iitb twitter</a>
+ <!-- Mood Indigo -->
+<a href="https://www.instagram.com/iitbombay.moodi" target="_blank" style="color:#fff; text-decoration:none;">
+  <i class="fab fa-instagram"></i> @iitbombay.moodi
 </a>
+
+<!-- Techfest -->
+<a href="https://www.instagram.com/iitbtechfest" target="_blank" style="color:#fff; text-decoration:none;">
+  <i class="fab fa-instagram"></i> @iitbtechfest
+</a>
+
+<!-- E-Cell IITB -->
+<a href="https://www.instagram.com/iitbe_cell" target="_blank" style="color:#fff; text-decoration:none;">
+  <i class="fab fa-instagram"></i> @iitbe_cell
+</a>
+
+
   </div>
 
-  <p style="color:#aaa; margin-top:30px;" data-aos="fade-up" data-aos-delay="200">© 2025 IIT Bombay Upcoming Events. All rights reserved.</p>
+  <p style="color:#aaa; margin-top:30px;" data-aos="fade-up" data-aos-delay="200">© 2025 IIT Bombay Upcoming Events.</p>
 </footer>
 
 <style>
