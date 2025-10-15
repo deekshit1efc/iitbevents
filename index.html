@@ -1,432 +1,1139 @@
-<!-- Save this file as index.html and open in browser -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>IITB — Events Showcase 2025</title>
-
-<!-- Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-80C1LCPXHQ"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-80C1LCPXHQ');
-</script>
-<!-- End Google Analytics -->
-
-
-
-
-  
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-<style>
-:root{
-  --bg:#0f1115;
-  --card:#111318;
-  --muted:#bfc6cc;
-  --accent1:#3fb48f;
-  --accent2:#ffd166;
-  --glass: rgba(255,255,255,0.03);
-  --shadow: 0 10px 30px rgba(0,0,0,0.5);
-}
-body{
-  background: linear-gradient(180deg, var(--bg), #060607);
-  color: #e6eef6;
-  font-family:'Inter',system-ui,Arial,sans-serif;
-}
-a{color:var(--accent1); transition:0.3s}
-a:hover{filter:brightness(1.2);text-decoration:underline}
-
-/* NAV */
-nav{background: linear-gradient(180deg, rgba(15,15,22,0.85), rgba(15,15,22,0.5)); border-bottom:1px solid rgba(255,255,255,0.05);}
-.nav-links a{color:var(--muted)}
-.nav-links a:hover{background: rgba(255,255,255,0.05);transform:translateY(-1px)}
-.cta{background: var(--accent2); color: #111;font-weight:700}
-
-/* HERO */
-header{background:none}
-.tagline{background: rgba(63,180,143,0.15); color: var(--accent1)}
-h1{background: var(--accent1); -webkit-background-clip:text; background-clip:text; color:transparent;}
-p.lead{color:var(--muted)}
-.btn{background: var(--accent1); color:#021; box-shadow:0 10px 30px rgba(63,180,143,0.2)}
-.btn.secondary{color:var(--accent2); border:1px solid rgba(255,209,102,0.2)}
-
-/* CARDS */
-.card, .feature-card, .modal .panel{background: var(--card); border:1px solid rgba(255,255,255,0.04); box-shadow: var(--shadow);}
-.card h4, .feature-card h3{color:#e6eef6}
-.meta{color:var(--muted)}
-.desc{color:#d9eefa}
-.link{background:var(--accent1); color:#021}
-.more{color:var(--accent2); border:1px solid rgba(255,209,102,0.15)}
-
-/* FILTER PILL */
-.pill{color:var(--muted); border:1px solid rgba(255,255,255,0.03)}
-.pill.active{background: rgba(63,180,143,0.15); box-shadow:0 6px 18px rgba(63,180,143,0.08); color: var(--accent1);}
-
-/* FOOTER */
-footer{color:var(--muted); border-top:1px solid rgba(255,255,255,0.03)}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IITB Upcoming Events</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- AOS Library for scroll animations -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+  <style>
+    * {margin:0; padding:0; box-sizing:border-box; font-family:'Roboto', sans-serif;}
+    body {background:#0d0d0d; color:#fff;}
+    header {position:fixed; top:0; width:100%; background:rgba(0,0,0,0.7); display:flex; justify-content:space-between; align-items:center; padding:15px 50px; z-index:1000;}
+    header .logo {font-size:24px; font-weight:700; color:#ff0055;}
+    nav ul {list-style:none; display:flex; gap:30px;}
+    nav ul li a {text-decoration:none; color:#fff; font-weight:500; transition:0.3s;}
+    nav ul li a:hover {color:#ff0055;}
+    .hero {height:100vh; display:flex; justify-content:center; align-items:center; text-align:center; position:relative; overflow:hidden;}
+    .hero h1 {font-size:60px; color:#ff0055; margin-bottom:20px;}
+    .hero p {font-size:20px; color:#fff; max-width:700px; margin:auto;}
+    .hero .cta {margin-top:30px;}
+    .hero .cta a {padding:12px 30px; background:#ff0055; color:#fff; text-decoration:none; border-radius:5px; transition:0.3s;}
+    .hero .cta a:hover {background:#ff3366;}
+    /* Placeholder for 3D canvas */
+    #heroCanvas {position:absolute; top:0; left:0; width:100%; height:100%; z-index:-1;}
+    @media (max-width:768px){
+      header {padding:15px 20px;}
+      .hero h1 {font-size:40px;}
+      .hero p {font-size:16px;}
+      nav ul {gap:15px;}
+    }
+  </style>
 </head>
 <body>
+  <header>
+    <div class="logo">IITB Events</div>
+    <nav>
+      <ul>
+        <li><a href="#events">Upcoming Events</a></li>
+        <li><a href="#featured">Featured</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
 
-
-<!-- NAV -->
-<nav>
-  <div class="nav-inner">
-    <div class="logo"><div class="logo-mark">I</div><div style="margin-left:6px">IITB Events</div></div>
-    <div class="nav-links">
-      <a href="#events">Events</a>
-      <a href="#featured">Featured</a>
-      <a href="#about">About</a>
-      <button class="cta" onclick="document.querySelector('#events').scrollIntoView({behavior:'smooth'})">Explore</button>
-    </div>
-  </div>
-</nav>
-
-<!-- HERO -->
-<header>
-  <canvas id="heroCanvas"></canvas>
-  <div class="hero">
-    <div class="hero-left">
-      <span class="tagline">Campus Spotlight • 2025</span>
-      <h1>The Best of IIT Bombay — Events, Workshops & Innovation</h1>
-      <p class="lead">One page to explore major IIT Bombay events in 2025 — culture, tech, sports and entrepreneurship. Filter, search, open details and get links. Built with performance & modern UI in mind.</p>
-      <div class="hero-ctas">
-        <button class="btn" onclick="document.getElementById('searchInput').focus()">Search Events</button>
-        <button class="btn secondary" onclick="document.querySelector('#events').scrollIntoView({behavior:'smooth'})">View All Events</button>
+  <section class="hero">
+    <canvas id="heroCanvas"></canvas>
+    <div class="hero-content" data-aos="fade-up">
+      <h1>Experience IITB Events in 3D</h1>
+      <p>Discover upcoming workshops, Techfest, Mood Indigo and many more exciting events at IIT Bombay. Dive into a world of interactive 3D animations and dynamic experiences.</p>
+      <div class="cta">
+        <a href="#events">Explore Events</a>
       </div>
     </div>
+  </section>
 
-    <div class="hero-right">
-      <div class="feature-card" id="featured">
-        <h3>Featured — Coming Up</h3>
-        <div class="feature-grid">
-          <div>
-            <div class="small">Techfest</div>
-            <strong>Dec 21–24, 2025</strong>
-          </div>
-          <div>
-            <div class="small">E-Summit</div>
-            <strong>Dec 11–12, 2025</strong>
-          </div>
-          <div>
-            <div class="small">Mood Indigo</div>
-            <strong>Dec 15–18, 2025</strong>
-          </div>
-          <div>
-            <div class="small">Cyclothon</div>
-            <strong>Oct 2, 2025</strong>
-          </div>
-        </div>
-        <p class="small" style="margin-top:12px">Dates pulled from official fest pages and institute channels (see sources).</p>
-      </div>
-    </div>
-  </div>
-</header>
+  <!-- AOS & Three.js Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r152/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script>
+    AOS.init();
 
-<!-- CONTROL BAR: SEARCH + FILTERS -->
-<div class="controls">
-  <div class="search">
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="opacity:0.8"><path d="M21 21l-4.35-4.35" stroke="#bfefff" stroke-width="1.5" stroke-linecap="round"/></svg>
-    <input id="searchInput" placeholder="Search events (title, venue, date) — try 'Techfest' or 'Dec'">
-    <div style="width:12px"></div>
-  </div>
-  <div class="filters" id="filterBar">
-    <div class="pill active" data-filter="all">All</div>
-    <div class="pill" data-filter="cultural">Cultural</div>
-    <div class="pill" data-filter="technical">Technical</div>
-    <div class="pill" data-filter="workshop">Workshop</div>
-    <div class="pill" data-filter="sports">Sports</div>
-    <div class="pill" data-filter="entrepreneurship">Entrepreneurship</div>
-  </div>
-</div>
+    // Basic Three.js 3D background setup
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({canvas: document.getElementById('heroCanvas'), alpha:true});
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    camera.position.z = 5;
 
-<!-- EVENTS -->
-<main id="events">
-  <div style="display:flex;justify-content:space-between;align-items:end;margin-bottom:12px">
-    <h2 style="margin:0">All Events</h2>
-    <div style="color:var(--muted)">Total: <span id="count">0</span></div>
-  </div>
+    const geometry = new THREE.TorusKnotGeometry(1,0.3,100,16);
+    const material = new THREE.MeshStandardMaterial({color:0xff0055, metalness:0.6, roughness:0.2});
+    const torusKnot = new THREE.Mesh(geometry, material);
+    scene.add(torusKnot);
 
-  <div class="grid" id="eventsGrid">
-    <!-- Cards will be injected by JS (see script) -->
-  </div>
-</main>
+    const light = new THREE.PointLight(0xffffff,1);
+    light.position.set(5,5,5);
+    scene.add(light);
 
-<!-- MODAL -->
-<div class="modal" id="modal">
-  <div class="panel">
-    <button class="close" onclick="closeModal()">✕</button>
-    <div id="modalContent"></div>
-  </div>
-</div>
+    function animate(){
+      requestAnimationFrame(animate);
+      torusKnot.rotation.x +=0.01;
+      torusKnot.rotation.y +=0.01;
+      renderer.render(scene, camera);
+    }
+    animate();
 
-<!-- FOOTER -->
-<footer>
-  Built with ❤️ • Data aggregated from official IITB event pages & social channels • © IIT Bombay (events)
-</footer>
-
-<!-- SCRIPTS -->
-<script>
-/* ===== event data (aggregated & curated) =====
-   sources: official fest pages and institute posts (see bottom of chat)
-   Each object: id, category, title, date, time, venue, description, link
-*/
-const EVENTS = [
-  {
-    id: 'techfest',
-    category: 'technical',
-    title: 'Techfest 2025 — A Simulated Paradigm',
-    date: 'Dec 21–24, 2025',
-    time: '9:00 AM – 9:00 PM',
-    venue: 'IIT Bombay Campus',
-    description: 'Asia’s largest science & technology festival — workshops, competitions, exhibitions, international challenges, and keynote talks by industry leaders.',
-    link: 'https://techfest.org'
-  },
-  {
-    id: 'moodi',
-    category: 'cultural',
-    title: 'Mood Indigo 2025',
-    date: 'Dec 15–18, 2025',
-    time: '10:00 AM – 10:00 PM',
-    venue: 'IIT Bombay Campus',
-    description: 'Asia’s largest college cultural festival: music, dance, theatre, literary events and high-profile performances across multiple nights.',
-    link: 'https://moodi.org'
-  },
-  {
-    id: 'esummit',
-    category: 'entrepreneurship',
-    title: 'E‑Summit 2025 (E‑Cell)',
-    date: 'Dec 11–12, 2025',
-    time: '5:30 PM onwards',
-    venue: 'OAT, IIT Bombay',
-    description: 'Asia’s largest entrepreneurship conclave by E‑Cell IIT Bombay — startup pitches, workshops, masterclasses & networking.',
-    link: 'https://ecell.in/esummit/'
-  },
-  {
-    id: 'cyclo',
-    category: 'sports',
-    title: 'Swachhata Cyclothon Rally',
-    date: 'Oct 2, 2025',
-    time: '6:00 AM – 11:00 AM',
-    venue: 'Campus Rally Start: SAC',
-    description: 'Cyclothon to promote cleanliness & eco-aware transport across campus as part of Swachhata initiatives.',
-    link: ''
-  },
-  {
-    id: 'db101',
-    category: 'workshop',
-    title: 'DB101 — Debate Session (Workshop)',
-    date: 'Oct 1, 2025',
-    time: '3:00 PM – 6:00 PM',
-    venue: 'Lecture Hall 2',
-    description: 'Interactive session on debate structure, argumentation and public speaking for students.',
-    link: ''
-  },
-  {
-    id: 'virasat',
-    category: 'cultural',
-    title: 'Virasat 2025 — Classical & Folk Arts',
-    date: 'Oct 4–5, 2025',
-    time: '6:00 PM – 9:00 PM',
-    venue: 'LT‑PCSA',
-    description: 'A celebration of traditional Indian classical and folk performances.',
-    link: ''
-  },
-  {
-    id: 'freshiezza',
-    category: 'cultural',
-    title: 'Freshiezza Dance (Freshers Event)',
-    date: 'Oct, 2025',
-    time: '',
-    venue: 'TBA',
-    description: 'Dance event exclusively for first-year students.',
-    link: ''
-  },
-  {
-    id: 'spart',
-    category: 'technical',
-    title: 'SPART — Solar Powered Airship Orientation',
-    date: 'Oct 6, 2025',
-    time: 'TBA',
-    venue: 'LC 001',
-    description: 'Orientation for the Solar-Powered Airship team — join if interested in aerospace & solar systems.',
-    link: ''
-  },
-  {
-    id: 'aavhan',
-    category: 'sports',
-    title: 'Aavhan — IIT Bombay Half Marathon / Meet',
-    date: 'Oct 15, 2025',
-    time: '4:30 PM onwards',
-    venue: 'FC Kohli / Campus',
-    description: 'Meet & registration for marathon participating teams; fitness & running community meet-up.',
-    link: ''
-  },
-  {
-    id: 'enpro',
-    category: 'entrepreneurship',
-    title: "EnPro'25 — Entrepreneurship Bootcamp",
-    date: 'Oct 5, 2025',
-    time: '11:00 AM – 3:00 PM',
-    venue: 'TBA',
-    description: 'Hands-on bootcamp focusing on business skills, ideation & pitch readiness.',
-    link: ''
-  }
-];
-
-/* ===== render events ===== */
-const grid = document.getElementById('eventsGrid');
-const countEl = document.getElementById('count');
-function renderEvents(list){
-  grid.innerHTML = '';
-  list.forEach(ev=>{
-    const card = document.createElement('article');
-    card.className = 'card';
-    card.dataset.cat = ev.category;
-    card.innerHTML = `
-      <h4>${ev.title}</h4>
-      <div class="meta">${ev.date}${ev.time? ' • '+ev.time : ''}${ev.venue? ' • '+ev.venue : ''}</div>
-      <div class="desc">${ev.description}</div>
-      <div class="actions">
-        ${ev.link? `<a class="link" href="${ev.link}" target="_blank" rel="noopener">Open</a>` : ''}
-        <button class="more" onclick="openModal('${ev.id}')">Details</button>
-      </div>
-    `;
-    grid.appendChild(card);
-    // subtle stagger reveal
-    setTimeout(()=>card.classList.add('show'), 80);
-  });
-  countEl.textContent = list.length;
-}
-renderEvents(EVENTS);
-
-/* ===== filters & search ===== */
-const pills = document.querySelectorAll('.pill');
-pills.forEach(p=>{
-  p.addEventListener('click', ()=> {
-    pills.forEach(x=>x.classList.remove('active'));
-    p.classList.add('active');
-    applyFilters();
-  });
-});
-document.getElementById('searchInput').addEventListener('input', applyFilters);
-
-function applyFilters(){
-  const q = document.getElementById('searchInput').value.trim().toLowerCase();
-  const active = document.querySelector('.pill.active').dataset.filter;
-  const filtered = EVENTS.filter(ev=>{
-    const matchesFilter = active === 'all' ? true : ev.category === active;
-    const text = (ev.title+' '+ev.description+' '+ev.venue+' '+ev.date).toLowerCase();
-    const matchesSearch = q === '' ? true : text.includes(q);
-    return matchesFilter && matchesSearch;
-  });
-  renderEvents(filtered);
-}
-
-/* ===== Modal ===== */
-function openModal(id){
-  const ev = EVENTS.find(x=>x.id===id);
-  const modal = document.getElementById('modal');
-  const content = document.getElementById('modalContent');
-  content.innerHTML = `
-    <h3>${ev.title}</h3>
-    <div style="color:var(--muted);margin-bottom:8px">${ev.date}${ev.time? ' • '+ev.time : ''}${ev.venue? ' • '+ev.venue : ''}</div>
-    <p style="margin-bottom:10px">${ev.description}</p>
-    ${ev.link? `<p><a href="${ev.link}" target="_blank" class="link">Open event page</a></p>` : ''}
-  `;
-  modal.style.display = 'grid';
-}
-function closeModal(){document.getElementById('modal').style.display = 'none'}
-
-/* ===== nav scroll helper ===== */
-document.querySelectorAll('.nav-links a').forEach(a=>{
-  a.addEventListener('click', (e)=>{
-    e.preventDefault();
-    const target = document.querySelector(a.getAttribute('href'));
-    if(target) target.scrollIntoView({behavior:'smooth', block:'start'});
-  });
-});
-
-/* ===== back to top / small ui ===== */
-const backTop = document.createElement('div');
-backTop.style.position = 'fixed';
-backTop.style.right = '18px';
-backTop.style.bottom = '18px';
-backTop.style.background = 'linear-gradient(90deg,#0066ff,#00e5ff)';
-backTop.style.color = '#021';
-backTop.style.padding = '10px 12px';
-backTop.style.borderRadius = '10px';
-backTop.style.cursor = 'pointer';
-backTop.style.fontWeight = '800';
-backTop.style.display = 'none';
-backTop.textContent = '↑ Top';
-document.body.appendChild(backTop);
-backTop.addEventListener('click', ()=>window.scrollTo({top:0,behavior:'smooth'}));
-window.addEventListener('scroll', ()=> { backTop.style.display = window.scrollY>360 ? 'block' : 'none' });
-
-/* ===== responsive small nav toggle (if needed) ===== */
-function toggleMenu(){
-  const el = document.getElementById('navLinks');
-  if(!el) return;
-  el.classList.toggle('show');
-}
-
-/* ===== hero particle animation (lightweight) ===== */
-const canvas = document.getElementById('heroCanvas');
-const ctx = canvas.getContext('2d');
-let W = canvas.width = innerWidth;
-let H = canvas.height = innerHeight*0.84;
-const particles = [];
-for(let i=0;i<140;i++){
-  particles.push({
-    x: Math.random()*W,
-    y: Math.random()*H,
-    r: Math.random()*1.6+0.6,
-    dx: (Math.random()-0.5)*0.4,
-    dy: (Math.random()-0.5)*0.4,
-    hue: Math.random()*360
-  });
-}
-function frame(){
-  ctx.clearRect(0,0,W,H);
-  // subtle gradient background overlay
-  const g = ctx.createLinearGradient(0,0,W,H);
-  g.addColorStop(0,'rgba(0,120,255,0.02)');
-  g.addColorStop(1,'rgba(124,77,255,0.02)');
-  ctx.fillStyle = g;
-  ctx.fillRect(0,0,W,H);
-  particles.forEach(p=>{
-    ctx.beginPath();
-    ctx.fillStyle = `hsla(${p.hue},80%,60%,0.06)`;
-    ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-    ctx.fill();
-    p.x += p.dx; p.y += p.dy;
-    if(p.x < -10) p.x = W+10;
-    if(p.x > W+10) p.x = -10;
-    if(p.y < -10) p.y = H+10;
-    if(p.y > H+10) p.y = -10;
-  });
-  requestAnimationFrame(frame);
-}
-frame();
-addEventListener('resize', ()=>{W = canvas.width = innerWidth; H = canvas.height = innerHeight*0.84});
-
-/* ===== intersection reveal for cards (progressive) ===== */
-const observer = new IntersectionObserver((entries)=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting) e.target.classList.add('show');
-  });
-},{threshold:0.12});
-const observeCards = ()=> document.querySelectorAll('.card').forEach(c=>observer.observe(c));
-observeCards();
-// Re-observe when rendering new list
-const origRender = renderEvents;
-const proxiedRender = (list)=>{origRender(list); setTimeout(observeCards, 60);};
-window.renderEvents = proxiedRender;
-</script>
-
+    window.addEventListener('resize', ()=>{
+      camera.aspect = window.innerWidth/window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+  </script>
 </body>
 </html>
+<!-- Part 2: Upcoming Events Section -->
+<section id="events" style="padding:100px 50px; background:#111;">
+  <h2 style="text-align:center; font-size:40px; color:#ff0055; margin-bottom:50px;" data-aos="fade-up">Upcoming Events</h2>
+  <div class="events-container" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:30px;">
+    
+    <!-- Event Card 1 -->
+    <div class="event-card" data-aos="fade-up" style="background:#1a1a1a; border-radius:15px; overflow:hidden; perspective:1000px;">
+      <div class="card-inner" style="transition:transform 0.5s; transform-style:preserve-3d;">
+        <div class="card-front" style="padding:20px; backface-visibility:hidden;">
+          <h3 style="color:#ff0055; margin-bottom:10px;">Techfest 2025</h3>
+          <p style="color:#fff;">India's largest technology festival at IIT Bombay. Workshops, talks, competitions & more!</p>
+        </div>
+        <div class="card-back" style="position:absolute; top:0; left:0; width:100%; height:100%; background:#ff0055; color:#fff; display:flex; align-items:center; justify-content:center; backface-visibility:hidden; transform:rotateY(180deg);">
+          <p style="padding:20px;">Click to register or know more about Techfest 2025 events.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Event Card 2 -->
+    <div class="event-card" data-aos="fade-up" data-aos-delay="100" style="background:#1a1a1a; border-radius:15px; overflow:hidden; perspective:1000px;">
+      <div class="card-inner" style="transition:transform 0.5s; transform-style:preserve-3d;">
+        <div class="card-front" style="padding:20px; backface-visibility:hidden;">
+          <h3 style="color:#ff0055; margin-bottom:10px;">Mood Indigo 2025</h3>
+          <p style="color:#fff;">IIT Bombay's annual cultural festival. Music, dance, theatre, and celebrity performances!</p>
+        </div>
+        <div class="card-back" style="position:absolute; top:0; left:0; width:100%; height:100%; background:#ff0055; color:#fff; display:flex; align-items:center; justify-content:center; backface-visibility:hidden; transform:rotateY(180deg);">
+          <p style="padding:20px;">Click to register or explore Mood Indigo 2025 schedule.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Event Card 3 -->
+    <div class="event-card" data-aos="fade-up" data-aos-delay="200" style="background:#1a1a1a; border-radius:15px; overflow:hidden; perspective:1000px;">
+      <div class="card-inner" style="transition:transform 0.5s; transform-style:preserve-3d;">
+        <div class="card-front" style="padding:20px; backface-visibility:hidden;">
+          <h3 style="color:#ff0055; margin-bottom:10px;">Entrepreneurship Summit</h3>
+          <p style="color:#fff;">Workshops, mentorship sessions and startup competitions at IIT Bombay for budding entrepreneurs.</p>
+        </div>
+        <div class="card-back" style="position:absolute; top:0; left:0; width:100%; height:100%; background:#ff0055; color:#fff; display:flex; align-items:center; justify-content:center; backface-visibility:hidden; transform:rotateY(180deg);">
+          <p style="padding:20px;">Know more & register for Entrepreneurship Summit events.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  /* Card hover 3D effect */
+  .event-card:hover .card-inner {
+    transform: rotateY(180deg);
+  }
+
+  /* Responsive tweaks */
+  @media (max-width:768px){
+    .events-container {gap:20px;}
+  }
+</style>
+
+<script>
+  // Optional: Add subtle 3D rotation based on mouse movement
+  const cards = document.querySelectorAll('.event-card');
+  cards.forEach(card => {
+    card.addEventListener('mousemove', (e)=>{
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const centerX = rect.width/2;
+      const centerY = rect.height/2;
+      const rotateX = ((y - centerY)/centerY) * 10;
+      const rotateY = ((x - centerX)/centerX) * 10;
+      card.querySelector('.card-inner').style.transform = `rotateY(${rotateY}deg) rotateX(${ -rotateX }deg)`;
+    });
+    card.addEventListener('mouseleave', ()=>{
+      card.querySelector('.card-inner').style.transform = 'rotateY(0deg) rotateX(0deg)';
+    });
+  });
+</script>
+<!-- Part 3: Featured Events Section -->
+<section id="featured" style="padding:100px 50px; background:#0a0a0a;">
+  <h2 style="text-align:center; font-size:40px; color:#ff0055; margin-bottom:50px;" data-aos="fade-up">Featured Events</h2>
+  <div class="featured-container" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(350px,1fr)); gap:40px;">
+
+    <!-- Featured Event 1 -->
+    <div class="featured-card" data-aos="zoom-in" style="background:#1a1a1a; border-radius:20px; overflow:hidden; perspective:1200px; position:relative;">
+      <div class="featured-inner" style="transition:transform 0.7s; transform-style:preserve-3d;">
+        <div class="featured-front" style="padding:25px; backface-visibility:hidden;">
+          <h3 style="color:#ff0055; margin-bottom:15px;">Techfest Main Stage</h3>
+          <p style="color:#fff;">Experience the main stage events with workshops, coding competitions, robotics, and tech exhibitions in full 3D experience.</p>
+        </div>
+        <div class="featured-back" style="position:absolute; top:0; left:0; width:100%; height:100%; background:#ff0055; color:#fff; display:flex; align-items:center; justify-content:center; backface-visibility:hidden; transform:rotateY(180deg); padding:20px;">
+          <p>Register now to secure your spot in Techfest main stage activities and workshops!</p>
+        </div>
+      </div>
+      <!-- 3D floating sphere using Three.js -->
+      <canvas class="featured-canvas" style="position:absolute; top:0; left:0; width:100%; height:100%; z-index:-1;"></canvas>
+    </div>
+
+    <!-- Featured Event 2 -->
+    <div class="featured-card" data-aos="zoom-in" data-aos-delay="100" style="background:#1a1a1a; border-radius:20px; overflow:hidden; perspective:1200px; position:relative;">
+      <div class="featured-inner" style="transition:transform 0.7s; transform-style:preserve-3d;">
+        <div class="featured-front" style="padding:25px; backface-visibility:hidden;">
+          <h3 style="color:#ff0055; margin-bottom:15px;">Mood Indigo Concert</h3>
+          <p style="color:#fff;">Join Mood Indigo's cultural extravaganza with live concerts, dance shows, and celebrity performances in immersive 3D visuals.</p>
+        </div>
+        <div class="featured-back" style="position:absolute; top:0; left:0; width:100%; height:100%; background:#ff0055; color:#fff; display:flex; align-items:center; justify-content:center; backface-visibility:hidden; transform:rotateY(180deg); padding:20px;">
+          <p>Buy tickets and explore the Mood Indigo concert schedule with interactive 3D stage previews!</p>
+        </div>
+      </div>
+      <canvas class="featured-canvas" style="position:absolute; top:0; left:0; width:100%; height:100%; z-index:-1;"></canvas>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  /* Featured card hover 3D flip */
+  .featured-card:hover .featured-inner {
+    transform: rotateY(180deg);
+  }
+
+  @media (max-width:768px){
+    .featured-container {gap:25px;}
+  }
+</style>
+
+<script>
+  // 3D floating spheres in featured cards
+  const featuredCanvases = document.querySelectorAll('.featured-canvas');
+
+  featuredCanvases.forEach(canvas => {
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, canvas.clientWidth/canvas.clientHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({canvas:canvas, alpha:true});
+    renderer.setSize(canvas.clientWidth, canvas.clientHeight);
+
+    const geometry = new THREE.SphereGeometry(1, 32, 32);
+    const material = new THREE.MeshStandardMaterial({color:0xff0055, metalness:0.5, roughness:0.3});
+    const sphere = new THREE.Mesh(geometry, material);
+    scene.add(sphere);
+
+    const light = new THREE.PointLight(0xffffff,1);
+    light.position.set(3,3,3);
+    scene.add(light);
+
+    camera.position.z = 3;
+
+    function animate(){
+      requestAnimationFrame(animate);
+      sphere.rotation.x +=0.01;
+      sphere.rotation.y +=0.01;
+      renderer.render(scene,camera);
+    }
+    animate();
+
+    window.addEventListener('resize', ()=>{
+      camera.aspect = canvas.clientWidth/canvas.clientHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(canvas.clientWidth, canvas.clientHeight);
+    });
+  });
+</script>
+<!-- Part 4: About IITB Events Section -->
+<section id="about" style="padding:100px 50px; background:#111;">
+  <h2 style="text-align:center; font-size:40px; color:#ff0055; margin-bottom:50px;" data-aos="fade-up">About IITB Events</h2>
+  <div class="about-container" style="display:flex; flex-wrap:wrap; gap:50px; justify-content:center; align-items:center;">
+
+    <div class="about-text" style="flex:1; min-width:300px;" data-aos="fade-right">
+      <p style="font-size:18px; color:#fff; line-height:1.8;">
+        IIT Bombay hosts some of the most iconic events in India, including Techfest, Mood Indigo, Entrepreneurship Summit, and many cultural and technical workshops. These events bring together students, professionals, and innovators from across the globe to create immersive experiences with 3D and 4D interactive technologies.
+      </p>
+    </div>
+
+    <div class="about-stats" style="flex:1; min-width:300px; display:flex; flex-wrap:wrap; gap:30px; justify-content:center;" data-aos="fade-left">
+      
+      <!-- Stat 1 -->
+      <div class="stat-card" style="background:#1a1a1a; padding:25px; border-radius:15px; text-align:center; width:120px;">
+        <h3 style="color:#ff0055; font-size:32px;" class="counter" data-target="25">0</h3>
+        <p style="color:#fff; font-size:14px;">Years of Excellence</p>
+      </div>
+
+      <!-- Stat 2 -->
+      <div class="stat-card" style="background:#1a1a1a; padding:25px; border-radius:15px; text-align:center; width:120px;">
+        <h3 style="color:#ff0055; font-size:32px;" class="counter" data-target="500">0</h3>
+        <p style="color:#fff; font-size:14px;">Events Hosted</p>
+      </div>
+
+      <!-- Stat 3 -->
+      <div class="stat-card" style="background:#1a1a1a; padding:25px; border-radius:15px; text-align:center; width:120px;">
+        <h3 style="color:#ff0055; font-size:32px;" class="counter" data-target="20000">0</h3>
+        <p style="color:#fff; font-size:14px;">Participants</p>
+      </div>
+
+      <!-- Stat 4 -->
+      <div class="stat-card" style="background:#1a1a1a; padding:25px; border-radius:15px; text-align:center; width:120px;">
+        <h3 style="color:#ff0055; font-size:32px;" class="counter" data-target="50">0</h3>
+        <p style="color:#fff; font-size:14px;">Workshops</p>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<style>
+  /* About section responsive */
+  @media (max-width:768px){
+    .about-container {flex-direction:column; gap:40px;}
+    .about-stats {gap:20px;}
+  }
+</style>
+
+<script>
+  // Counter animation
+  const counters = document.querySelectorAll('.counter');
+  counters.forEach(counter => {
+    const updateCount = () => {
+      const target = +counter.getAttribute('data-target');
+      const count = +counter.innerText;
+      const increment = target / 200; // speed of counting
+      if(count < target){
+        counter.innerText = Math.ceil(count + increment);
+        setTimeout(updateCount, 20);
+      } else {
+        counter.innerText = target;
+      }
+    };
+    updateCount();
+  });
+</script>
+<!-- Part 5: Sponsors Section -->
+<section id="sponsors" style="padding:100px 50px; background:#0a0a0a;">
+  <h2 style="text-align:center; font-size:40px; color:#ff0055; margin-bottom:50px;" data-aos="fade-up">Our Sponsors</h2>
+  <div class="sponsors-container" style="display:flex; flex-wrap:wrap; justify-content:center; gap:50px;" data-aos="fade-up">
+
+    <!-- Sponsor 1 -->
+    <div class="sponsor-card" style="width:150px; height:100px; background:#1a1a1a; display:flex; justify-content:center; align-items:center; border-radius:15px; transition:0.3s;">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/TCS-Logo.svg" alt="TCS" style="max-width:100px; max-height:60px;">
+    </div>
+
+    <!-- Sponsor 2 -->
+    <div class="sponsor-card" style="width:150px; height:100px; background:#1a1a1a; display:flex; justify-content:center; align-items:center; border-radius:15px; transition:0.3s;">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Infosys_logo.svg" alt="Infosys" style="max-width:100px; max-height:60px;">
+    </div>
+
+    <!-- Sponsor 3 -->
+    <div class="sponsor-card" style="width:150px; height:100px; background:#1a1a1a; display:flex; justify-content:center; align-items:center; border-radius:15px; transition:0.3s;">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/e/e1/Wipro_logo.svg" alt="Wipro" style="max-width:100px; max-height:60px;">
+    </div>
+
+    <!-- Sponsor 4 -->
+    <div class="sponsor-card" style="width:150px; height:100px; background:#1a1a1a; display:flex; justify-content:center; align-items:center; border-radius:15px; transition:0.3s;">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/0/0e/Capgemini_logo.svg" alt="Capgemini" style="max-width:100px; max-height:60px;">
+    </div>
+
+  </div>
+</section>
+
+<style>
+  /* Sponsor hover animation */
+  .sponsor-card:hover {
+    transform: translateY(-10px) scale(1.1);
+    box-shadow: 0 0 20px #ff0055;
+  }
+
+  /* Responsive */
+  @media (max-width:768px){
+    .sponsors-container {gap:25px;}
+    .sponsor-card {width:120px; height:80px;}
+  }
+</style>
+
+<script>
+  // Optional: Rotate logos slowly using JS for subtle animation
+  const sponsorCards = document.querySelectorAll('.sponsor-card');
+  sponsorCards.forEach((card, index) => {
+    let angle = 0;
+    setInterval(()=>{
+      angle += 0.2;
+      card.style.transform = `rotateY(${angle}deg)`;
+    },50 + index*10); // slightly different speed for each card
+  });
+</script>
+<!-- Part 6: Countdown Timer Section -->
+<section id="countdown" style="padding:100px 50px; background:#111; text-align:center;">
+  <h2 style="font-size:40px; color:#ff0055; margin-bottom:50px;" data-aos="fade-up">Next Big Event</h2>
+  <div class="countdown-container" data-aos="fade-up" style="display:flex; justify-content:center; gap:30px; flex-wrap:wrap;">
+
+    <!-- Days -->
+    <div class="count-box" style="background:#1a1a1a; padding:30px; border-radius:15px; width:120px;">
+      <h3 id="days" style="font-size:36px; color:#ff0055;">0</h3>
+      <p style="color:#fff; font-size:14px;">Days</p>
+    </div>
+
+    <!-- Hours -->
+    <div class="count-box" style="background:#1a1a1a; padding:30px; border-radius:15px; width:120px;">
+      <h3 id="hours" style="font-size:36px; color:#ff0055;">0</h3>
+      <p style="color:#fff; font-size:14px;">Hours</p>
+    </div>
+
+    <!-- Minutes -->
+    <div class="count-box" style="background:#1a1a1a; padding:30px; border-radius:15px; width:120px;">
+      <h3 id="minutes" style="font-size:36px; color:#ff0055;">0</h3>
+      <p style="color:#fff; font-size:14px;">Minutes</p>
+    </div>
+
+    <!-- Seconds -->
+    <div class="count-box" style="background:#1a1a1a; padding:30px; border-radius:15px; width:120px;">
+      <h3 id="seconds" style="font-size:36px; color:#ff0055;">0</h3>
+      <p style="color:#fff; font-size:14px;">Seconds</p>
+    </div>
+
+  </div>
+
+  <!-- 3D rotating cube using Three.js -->
+  <canvas id="cubeCanvas" style="margin-top:50px; width:300px; height:300px;"></canvas>
+</section>
+
+<script>
+  // Countdown Timer
+  const targetDate = new Date("2025-12-01T10:00:00").getTime();
+  const daysEl = document.getElementById('days');
+  const hoursEl = document.getElementById('hours');
+  const minutesEl = document.getElementById('minutes');
+  const secondsEl = document.getElementById('seconds');
+
+  function updateCountdown(){
+    const now = new Date().getTime();
+    const diff = targetDate - now;
+
+    const days = Math.floor(diff/(1000*60*60*24));
+    const hours = Math.floor((diff%(1000*60*60*24))/(1000*60*60));
+    const minutes = Math.floor((diff%(1000*60*60))/(1000*60));
+    const seconds = Math.floor((diff%(1000*60))/1000);
+
+    daysEl.innerText = days;
+    hoursEl.innerText = hours;
+    minutesEl.innerText = minutes;
+    secondsEl.innerText = seconds;
+  }
+
+  setInterval(updateCountdown, 1000);
+
+  // Three.js 3D Rotating Cube
+  const cubeCanvas = document.getElementById('cubeCanvas');
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(75, cubeCanvas.clientWidth/cubeCanvas.clientHeight, 0.1, 1000);
+  const renderer = new THREE.WebGLRenderer({canvas:cubeCanvas, alpha:true});
+  renderer.setSize(cubeCanvas.clientWidth, cubeCanvas.clientHeight);
+
+  const geometry = new THREE.BoxGeometry(2,2,2);
+  const material = new THREE.MeshStandardMaterial({color:0xff0055, metalness:0.6, roughness:0.2});
+  const cube = new THREE.Mesh(geometry, material);
+  scene.add(cube);
+
+  const light = new THREE.PointLight(0xffffff,1);
+  light.position.set(5,5,5);
+  scene.add(light);
+
+  camera.position.z = 5;
+
+  function animateCube(){
+    requestAnimationFrame(animateCube);
+    cube.rotation.x +=0.01;
+    cube.rotation.y +=0.01;
+    renderer.render(scene,camera);
+  }
+  animateCube();
+
+  window.addEventListener('resize', ()=>{
+    camera.aspect = cubeCanvas.clientWidth/cubeCanvas.clientHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(cubeCanvas.clientWidth, cubeCanvas.clientHeight);
+  });
+</script>
+
+<style>
+  @media (max-width:768px){
+    .countdown-container {gap:20px;}
+    .count-box {width:100px; padding:20px;}
+  }
+</style>
+<!-- Part 7: Contact Section -->
+<section id="contact" style="padding:100px 50px; background:#0a0a0a;">
+  <h2 style="text-align:center; font-size:40px; color:#ff0055; margin-bottom:50px;" data-aos="fade-up">Contact Us</h2>
+
+  <div class="contact-container" style="display:flex; flex-wrap:wrap; justify-content:center; gap:50px;">
+
+    <!-- Contact Form -->
+    <div class="contact-form" style="flex:1; min-width:300px; background:#1a1a1a; padding:30px; border-radius:15px;" data-aos="fade-right">
+      <form>
+        <label style="color:#fff; font-weight:500;">Name</label>
+        <input type="text" placeholder="Your Name" class="input-field" style="width:100%; padding:12px; margin:10px 0 20px 0; border-radius:8px; border:none; outline:none; transition:0.3s;">
+
+        <label style="color:#fff; font-weight:500;">Email</label>
+        <input type="email" placeholder="Your Email" class="input-field" style="width:100%; padding:12px; margin:10px 0 20px 0; border-radius:8px; border:none; outline:none; transition:0.3s;">
+
+        <label style="color:#fff; font-weight:500;">Message</label>
+        <textarea placeholder="Your Message" class="input-field" style="width:100%; padding:12px; margin:10px 0 20px 0; border-radius:8px; border:none; outline:none; transition:0.3s;" rows="5"></textarea>
+
+        <button type="submit" style="padding:12px 25px; background:#ff0055; color:#fff; border:none; border-radius:8px; cursor:pointer; transition:0.3s;">Send Message</button>
+      </form>
+    </div>
+
+    <!-- Map -->
+    <div class="contact-map" style="flex:1; min-width:300px; border-radius:15px; overflow:hidden;" data-aos="fade-left">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d60207.25701574995!2d72.8305!3d19.1334!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7b7a64f0db88d%3A0x7b9c0f64a5f8a5b3!2sIIT%20Bombay!5e0!3m2!1sen!2sin!4v1689652312345!5m2!1sen!2sin" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  /* Input field hover 3D effect */
+  .input-field:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px #ff0055;
+  }
+
+  button:hover {
+    background:#ff3366;
+  }
+
+  @media (max-width:768px){
+    .contact-container {flex-direction:column; gap:30px;}
+  }
+</style>
+<!-- Part 8: Footer Section -->
+<footer style="background:#111; padding:50px 50px; text-align:center; position:relative;">
+  <h3 style="color:#ff0055; margin-bottom:20px;" data-aos="fade-up">Connect with Us</h3>
+
+  <div class="social-icons" style="display:flex; justify-content:center; gap:30px;" data-aos="fade-up" data-aos-delay="100">
+    <a href="https://www.facebook.com/IITBombay" target="_blank" style="color:#fff; font-size:24px; transition:0.3s;"><i class="fab fa-facebook-f"></i></a>
+    <a href="https://www.twitter.com/IITBombay" target="_blank" style="color:#fff; font-size:24px; transition:0.3s;"><i class="fab fa-twitter"></i></a>
+    <a href="https://www.instagram.com/iitbombay" target="_blank" style="color:#fff; font-size:24px; transition:0.3s;"><i class="fab fa-instagram"></i></a>
+    <a href="https://www.linkedin.com/school/iit-bombay/" target="_blank" style="color:#fff; font-size:24px; transition:0.3s;"><i class="fab fa-linkedin-in"></i></a>
+  </div>
+
+  <p style="color:#aaa; margin-top:30px;" data-aos="fade-up" data-aos-delay="200">© 2025 IIT Bombay Upcoming Events. All rights reserved.</p>
+</footer>
+
+<style>
+  .social-icons a:hover {
+    color:#ff0055;
+    transform: scale(1.2);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+</style>
+
+<script>
+  // Optional: Smooth scroll highlight effect
+  const navLinks = document.querySelectorAll('nav ul li a');
+  navLinks.forEach(link => {
+    link.addEventListener('click', e=>{
+      e.preventDefault();
+      const target = document.querySelector(link.getAttribute('href'));
+      target.scrollIntoView({behavior:'smooth'});
+    });
+  });
+</script>
+<!-- Part 9: Advanced Hero 3D/4D Particles -->
+<script>
+  // Three.js Particle Background in Hero
+  const heroCanvas2 = document.getElementById('heroCanvas');
+  const heroScene = new THREE.Scene();
+  const heroCamera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
+  const heroRenderer = new THREE.WebGLRenderer({canvas:heroCanvas2, alpha:true});
+  heroRenderer.setSize(window.innerWidth, window.innerHeight);
+
+  const particlesCount = 1000;
+  const positions = new Float32Array(particlesCount * 3);
+
+  for(let i=0;i<particlesCount*3;i++){
+    positions[i] = (Math.random() - 0.5) * 50;
+  }
+
+  const particleGeometry = new THREE.BufferGeometry();
+  particleGeometry.setAttribute('position', new THREE.BufferAttribute(positions,3));
+  const particleMaterial = new THREE.PointsMaterial({color:0xff0055, size:0.2});
+  const particles = new THREE.Points(particleGeometry, particleMaterial);
+  heroScene.add(particles);
+
+  heroCamera.position.z = 30;
+
+  function animateParticles(){
+    requestAnimationFrame(animateParticles);
+    particles.rotation.y += 0.001;
+    particles.rotation.x += 0.0005;
+    heroRenderer.render(heroScene, heroCamera);
+  }
+  animateParticles();
+
+  window.addEventListener('resize', ()=>{
+    heroCamera.aspect = window.innerWidth/window.innerHeight;
+    heroCamera.updateProjectionMatrix();
+    heroRenderer.setSize(window.innerWidth, window.innerHeight);
+  });
+
+  // Optional: Particles react to mouse movement
+  document.addEventListener('mousemove', e=>{
+    const mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+    const mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
+    particles.rotation.y = mouseX * 0.5;
+    particles.rotation.x = mouseY * 0.5;
+  });
+</script>
+<script>
+  // Enhance 3D depth on Upcoming Event Cards
+  const eventCards = document.querySelectorAll('.event-card');
+
+  eventCards.forEach(card=>{
+    const inner = card.querySelector('.card-inner');
+
+    card.addEventListener('mousemove', e=>{
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const centerX = rect.width/2;
+      const centerY = rect.height/2;
+      const rotateX = ((y - centerY)/centerY) * 15;
+      const rotateY = ((x - centerX)/centerX) * 15;
+      inner.style.transform = `rotateY(${rotateY}deg) rotateX(${-rotateX}deg) scale(1.05)`;
+      inner.style.boxShadow = `${-rotateY*0.5}px ${rotateX*0.5}px 20px rgba(255,0,85,0.5)`;
+    });
+
+    card.addEventListener('mouseleave', ()=>{
+      inner.style.transform = 'rotateY(0deg) rotateX(0deg) scale(1)';
+      inner.style.boxShadow = '0 0 10px rgba(255,0,85,0.2)';
+    });
+  });
+</script>
+
+<style>
+  .event-card .card-inner {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 0 10px rgba(255,0,85,0.2);
+  }
+
+  .event-card:hover .card-front, 
+  .event-card:hover .card-back {
+    backface-visibility: visible;
+  }
+</style>
+<script>
+  // Featured Event cards floating spheres animation upgrade
+  const featuredCanvases2 = document.querySelectorAll('.featured-canvas');
+
+  featuredCanvases2.forEach(canvas=>{
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, canvas.clientWidth/canvas.clientHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({canvas:canvas, alpha:true});
+    renderer.setSize(canvas.clientWidth, canvas.clientHeight);
+
+    const spheres = [];
+    const sphereCount = 5;
+
+    for(let i=0;i<sphereCount;i++){
+      const geometry = new THREE.SphereGeometry(0.5,32,32);
+      const material = new THREE.MeshStandardMaterial({color:0xff0055, metalness:0.6, roughness:0.3});
+      const sphere = new THREE.Mesh(geometry, material);
+      sphere.position.set((Math.random()-0.5)*4, (Math.random()-0.5)*4, (Math.random()-0.5)*4);
+      scene.add(sphere);
+      spheres.push(sphere);
+    }
+
+    const light = new THREE.PointLight(0xffffff,1);
+    light.position.set(3,3,3);
+    scene.add(light);
+
+    camera.position.z = 6;
+
+    function animateSpheres(){
+      requestAnimationFrame(animateSpheres);
+      spheres.forEach((s,index)=>{
+        s.rotation.x += 0.01 + index*0.002;
+        s.rotation.y += 0.01 + index*0.002;
+        const scale = 1 + Math.sin(Date.now()*0.002 + index) * 0.1;
+        s.scale.set(scale,scale,scale);
+      });
+      renderer.render(scene,camera);
+    }
+    animateSpheres();
+
+    window.addEventListener('resize', ()=>{
+      camera.aspect = canvas.clientWidth/canvas.clientHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(canvas.clientWidth, canvas.clientHeight);
+    });
+  });
+</script>
+<script>
+  // Countdown section glowing cube + particles
+  const cubeCanvas2 = document.getElementById('cubeCanvas');
+  const cubeScene = new THREE.Scene();
+  const cubeCamera = new THREE.PerspectiveCamera(75, cubeCanvas2.clientWidth/cubeCanvas2.clientHeight, 0.1, 1000);
+  const cubeRenderer = new THREE.WebGLRenderer({canvas:cubeCanvas2, alpha:true});
+  cubeRenderer.setSize(cubeCanvas2.clientWidth, cubeCanvas2.clientHeight);
+
+  // Cube
+  const geometry = new THREE.BoxGeometry(2,2,2);
+  const material = new THREE.MeshStandardMaterial({
+    color:0xff0055, 
+    emissive:0xff0055, 
+    emissiveIntensity:0.4, 
+    metalness:0.7, 
+    roughness:0.2
+  });
+  const cube = new THREE.Mesh(geometry, material);
+  cubeScene.add(cube);
+
+  // Particles
+  const particleCount = 500;
+  const positions = new Float32Array(particleCount*3);
+  for(let i=0;i<particleCount*3;i++){
+    positions[i] = (Math.random()-0.5)*20;
+  }
+  const particleGeometry = new THREE.BufferGeometry();
+  particleGeometry.setAttribute('position', new THREE.BufferAttribute(positions,3));
+  const particleMaterial = new THREE.PointsMaterial({color:0xff66aa, size:0.1});
+  const particles = new THREE.Points(particleGeometry, particleMaterial);
+  cubeScene.add(particles);
+
+  // Light
+  const light = new THREE.PointLight(0xffffff,1);
+  light.position.set(5,5,5);
+  cubeScene.add(light);
+
+  cubeCamera.position.z = 8;
+
+  function animateCube2(){
+    requestAnimationFrame(animateCube2);
+    cube.rotation.x +=0.01;
+    cube.rotation.y +=0.01;
+    particles.rotation.y +=0.002;
+    cubeRenderer.render(cubeScene, cubeCamera);
+  }
+  animateCube2();
+
+  window.addEventListener('resize', ()=>{
+    cubeCamera.aspect = cubeCanvas2.clientWidth/cubeCanvas2.clientHeight;
+    cubeCamera.updateProjectionMatrix();
+    cubeRenderer.setSize(cubeCanvas2.clientWidth, cubeCanvas2.clientHeight);
+  });
+
+  // Optional: cube glow pulse
+  setInterval(()=>{
+    material.emissiveIntensity = 0.3 + Math.sin(Date.now()*0.005)*0.3;
+  },16);
+</script>
+<script>
+  // 3D hover effect for input fields
+  const inputFields = document.querySelectorAll('.input-field');
+
+  inputFields.forEach(input=>{
+    input.addEventListener('mousemove', e=>{
+      const rect = input.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const centerX = rect.width/2;
+      const centerY = rect.height/2;
+      const rotateX = ((y - centerY)/centerY) * 5;
+      const rotateY = ((x - centerX)/centerX) * 5;
+      input.style.transform = `rotateY(${rotateY}deg) rotateX(${-rotateX}deg) scale(1.05)`;
+      input.style.boxShadow = `${-rotateY*2}px ${rotateX*2}px 15px rgba(255,0,85,0.5)`;
+    });
+
+    input.addEventListener('mouseleave', ()=>{
+      input.style.transform = 'rotateY(0deg) rotateX(0deg) scale(1)';
+      input.style.boxShadow = '0 0 10px rgba(255,0,85,0.2)';
+    });
+  });
+
+  // Submit button click animation
+  const submitBtn = document.querySelector('button[type="submit"]');
+  submitBtn.addEventListener('click', e=>{
+    e.preventDefault();
+    submitBtn.style.transform = 'scale(0.9)';
+    submitBtn.style.background = '#ff3366';
+    setTimeout(()=>{
+      submitBtn.style.transform = 'scale(1)';
+      submitBtn.style.background = '#ff0055';
+      alert('Message submitted!'); // placeholder, integrate real backend later
+    },200);
+  });
+</script>
+
+<style>
+  /* Input hover smooth transition */
+  .input-field {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  button[type="submit"] {
+    transition: transform 0.2s ease, background 0.2s ease;
+  }
+</style>
+<script>
+  // Sponsors carousel rotation + 3D hover
+  const sponsorsContainer = document.querySelector('.sponsors-container');
+  let angle = 0;
+
+  function rotateSponsors(){
+    requestAnimationFrame(rotateSponsors);
+    angle += 0.002;
+    sponsorsContainer.style.transform = `rotateY(${angle*360}deg)`;
+  }
+  rotateSponsors();
+
+  const sponsorCardsHover = document.querySelectorAll('.sponsor-card');
+  sponsorCardsHover.forEach(card=>{
+    card.addEventListener('mousemove', e=>{
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const centerX = rect.width/2;
+      const centerY = rect.height/2;
+      const rotateX = ((y - centerY)/centerY) * 10;
+      const rotateY = ((x - centerX)/centerX) * 10;
+      card.style.transform = `rotateY(${rotateY}deg) rotateX(${-rotateX}deg) scale(1.1)`;
+      card.style.boxShadow = `${-rotateY}px ${rotateX}px 25px rgba(255,0,85,0.5)`;
+    });
+
+    card.addEventListener('mouseleave', ()=>{
+      card.style.transform = 'rotateY(0deg) rotateX(0deg) scale(1)';
+      card.style.boxShadow = '0 0 10px rgba(255,0,85,0.2)';
+    });
+  });
+</script>
+
+<style>
+  .sponsors-container {
+    display:flex;
+    justify-content:center;
+    gap:50px;
+    perspective:1000px;
+    transition: transform 0.2s ease;
+  }
+
+  .sponsor-card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+</style>
+<!-- About Section Animated Background -->
+<canvas id="aboutParticles" style="position:absolute; top:0; left:0; width:100%; height:100%; z-index:-1;"></canvas>
+
+<script>
+  const aboutCanvas = document.getElementById('aboutParticles');
+  const aboutScene = new THREE.Scene();
+  const aboutCamera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
+  const aboutRenderer = new THREE.WebGLRenderer({canvas:aboutCanvas, alpha:true});
+  aboutRenderer.setSize(window.innerWidth, window.innerHeight);
+
+  const particleCount = 300;
+  const positions = new Float32Array(particleCount*3);
+  for(let i=0;i<particleCount*3;i++){
+    positions[i] = (Math.random()-0.5)*30;
+  }
+
+  const particleGeometry = new THREE.BufferGeometry();
+  particleGeometry.setAttribute('position', new THREE.BufferAttribute(positions,3));
+  const particleMaterial = new THREE.PointsMaterial({color:0xff0055, size:0.15});
+  const particles = new THREE.Points(particleGeometry, particleMaterial);
+  aboutScene.add(particles);
+
+  const light = new THREE.PointLight(0xffffff,0.5);
+  light.position.set(5,5,5);
+  aboutScene.add(light);
+
+  aboutCamera.position.z = 20;
+
+  function animateAboutParticles(){
+    requestAnimationFrame(animateAboutParticles);
+    particles.rotation.y += 0.002;
+    particles.rotation.x += 0.001;
+    aboutRenderer.render(aboutScene, aboutCamera);
+  }
+  animateAboutParticles();
+
+  window.addEventListener('resize', ()=>{
+    aboutCamera.aspect = window.innerWidth/window.innerHeight;
+    aboutCamera.updateProjectionMatrix();
+    aboutRenderer.setSize(window.innerWidth, window.innerHeight);
+  });
+</script>
+
+<style>
+  #about h2 {
+    color: #ff0055;
+    text-shadow: 0 0 10px #ff66aa, 0 0 20px #ff0055;
+    transition: text-shadow 0.3s ease;
+  }
+
+  #about h2:hover {
+    text-shadow: 0 0 20px #ff66aa, 0 0 40px #ff0055;
+  }
+</style>
+<!-- Hero Text Particles -->
+<canvas id="heroTextParticles" style="position:absolute; top:0; left:0; width:100%; height:100%; z-index:-1;"></canvas>
+
+<script>
+  const textCanvas = document.getElementById('heroTextParticles');
+  const textScene = new THREE.Scene();
+  const textCamera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
+  const textRenderer = new THREE.WebGLRenderer({canvas:textCanvas, alpha:true});
+  textRenderer.setSize(window.innerWidth, window.innerHeight);
+
+  const loader = new THREE.FontLoader();
+  loader.load('https://threejs.org/examples/fonts/helvetiker_regular.typeface.json', function(font){
+    const textGeometry = new THREE.TextGeometry('IITB Upcoming Events', {
+      font: font,
+      size: 2,
+      height: 0.5,
+      curveSegments: 12
+    });
+    const textMaterial = new THREE.MeshStandardMaterial({color:0xff0055, emissive:0xff0055, metalness:0.5, roughness:0.3});
+    const textMesh = new THREE.Mesh(textGeometry, textMaterial);
+    textGeometry.center();
+    textScene.add(textMesh);
+
+    // Floating animation
+    function animateText(){
+      requestAnimationFrame(animateText);
+      textMesh.rotation.y += 0.005;
+      textMesh.rotation.x = Math.sin(Date.now()*0.001)*0.05;
+      textRenderer.render(textScene,textCamera);
+    }
+    animateText();
+  });
+
+  const light = new THREE.PointLight(0xffffff,1);
+  light.position.set(5,5,5);
+  textScene.add(light);
+
+  textCamera.position.z = 10;
+
+  window.addEventListener('resize', ()=>{
+    textCamera.aspect = window.innerWidth/window.innerHeight;
+    textCamera.updateProjectionMatrix();
+    textRenderer.setSize(window.innerWidth, window.innerHeight);
+  });
+</script>
+<!-- Part 17: Events Filter Tabs -->
+<section id="eventFilter" style="padding:80px 50px; background:#111;">
+  <h2 style="text-align:center; font-size:36px; color:#ff0055; margin-bottom:40px;" data-aos="fade-up">Filter Events</h2>
+  
+  <div class="tabs" style="text-align:center; margin-bottom:40px;">
+    <button class="tab-btn active" data-category="all" style="padding:10px 20px; margin:0 10px; border:none; border-radius:8px; background:#ff0055; color:#fff; cursor:pointer;">All</button>
+    <button class="tab-btn" data-category="tech" style="padding:10px 20px; margin:0 10px; border:none; border-radius:8px; background:#333; color:#fff; cursor:pointer;">Tech</button>
+    <button class="tab-btn" data-category="cultural" style="padding:10px 20px; margin:0 10px; border:none; border-radius:8px; background:#333; color:#fff; cursor:pointer;">Cultural</button>
+    <button class="tab-btn" data-category="sports" style="padding:10px 20px; margin:0 10px; border:none; border-radius:8px; background:#333; color:#fff; cursor:pointer;">Sports</button>
+  </div>
+
+  <div class="event-cards-container" style="display:flex; flex-wrap:wrap; justify-content:center; gap:30px;">
+    <div class="event-card" data-category="tech" style="width:250px; background:#1a1a1a; border-radius:15px; padding:20px; transition:0.3s;" data-aos="fade-up">
+      <h3 style="color:#ff0055;">Techfest 2025</h3>
+      <p style="color:#fff;">Annual technical festival with workshops, competitions, and lectures.</p>
+    </div>
+    <div class="event-card" data-category="cultural" style="width:250px; background:#1a1a1a; border-radius:15px; padding:20px; transition:0.3s;" data-aos="fade-up">
+      <h3 style="color:#ff0055;">Mood Indigo 2025</h3>
+      <p style="color:#fff;">Cultural festival with music, dance, and performances by top artists.</p>
+    </div>
+    <div class="event-card" data-category="sports" style="width:250px; background:#1a1a1a; border-radius:15px; padding:20px; transition:0.3s;" data-aos="fade-up">
+      <h3 style="color:#ff0055;">Sports Meet</h3>
+      <p style="color:#fff;">Inter-college sports competitions with multiple games and activities.</p>
+    </div>
+  </div>
+</section>
+
+<script>
+  const tabBtns = document.querySelectorAll('.tab-btn');
+  const eventCards = document.querySelectorAll('.event-card');
+
+  tabBtns.forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      tabBtns.forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      tabBtns.forEach(b=>{
+        if(b!==btn && b.style.background!="#333") b.style.background="#333";
+      });
+      btn.style.background="#ff0055";
+
+      const category = btn.getAttribute('data-category');
+      eventCards.forEach(card=>{
+        if(category==='all' || card.getAttribute('data-category')===category){
+          card.style.display='flex';
+          card.style.opacity='1';
+          card.style.transform='scale(1)';
+        } else {
+          card.style.opacity='0';
+          card.style.transform='scale(0.8)';
+          setTimeout(()=>{card.style.display='none';},300);
+        }
+      });
+    });
+  });
+</script>
+<script>
+  // Hero section parallax particles
+  const heroParticles = [];
+  const heroParticleCount = 200;
+  const heroCanvas3 = document.createElement('canvas');
+  heroCanvas3.id = 'heroParticleCanvas';
+  heroCanvas3.style.position='absolute';
+  heroCanvas3.style.top='0';
+  heroCanvas3.style.left='0';
+  heroCanvas3.style.width='100%';
+  heroCanvas3.style.height='100%';
+  heroCanvas3.style.zIndex='-1';
+  document.body.appendChild(heroCanvas3);
+  const ctx = heroCanvas3.getContext('2d');
+
+  function resizeCanvas(){
+    heroCanvas3.width = window.innerWidth;
+    heroCanvas3.height = window.innerHeight;
+  }
+  window.addEventListener('resize', resizeCanvas);
+  resizeCanvas();
+
+  for(let i=0;i<heroParticleCount;i++){
+    heroParticles.push({
+      x: Math.random()*window.innerWidth,
+      y: Math.random()*window.innerHeight,
+      size: Math.random()*3 + 1,
+      speedX: (Math.random()-0.5)*0.5,
+      speedY: (Math.random()-0.5)*0.5
+    });
+  }
+
+  let mouseX=0, mouseY=0;
+  document.addEventListener('mousemove', e=>{
+    mouseX = e.clientX/window.innerWidth - 0.5;
+    mouseY = e.clientY/window.innerHeight - 0.5;
+  });
+
+  function animateHeroParticles(){
+    ctx.clearRect(0,0,heroCanvas3.width, heroCanvas3.height);
+    heroParticles.forEach(p=>{
+      p.x += p.speedX + mouseX*2;
+      p.y += p.speedY + mouseY*2;
+
+      if(p.x<0) p.x=window.innerWidth;
+      if(p.x>window.innerWidth) p.x=0;
+      if(p.y<0) p.y=window.innerHeight;
+      if(p.y>window.innerHeight) p.y=0;
+
+      ctx.fillStyle = '#ff0055';
+      ctx.beginPath();
+      ctx.arc(p.x,p.y,p.size,0,Math.PI*2);
+      ctx.fill();
+    });
+    requestAnimationFrame(animateHeroParticles);
+  }
+  animateHeroParticles();
+</script>
+<script>
+  // Footer animated glowing social icons
+  const socialLinks = document.querySelectorAll('.social-icons a');
+
+  socialLinks.forEach(link=>{
+    let glowPhase = Math.random()*Math.PI*2;
+    function animateGlow(){
+      glowPhase += 0.05;
+      const glow = 5 + Math.sin(glowPhase)*5;
+      link.style.textShadow = `0 0 ${glow}px #ff0055, 0 0 ${glow*2}px #ff66aa`;
+      requestAnimationFrame(animateGlow);
+    }
+    animateGlow();
+
+    // Hover scale effect
+    link.addEventListener('mouseenter', ()=>{
+      link.style.transform='scale(1.3)';
+    });
+    link.addEventListener('mouseleave', ()=>{
+      link.style.transform='scale(1)';
+    });
+  });
+</script>
+
+<style>
+  .social-icons a {
+    transition: transform 0.2s ease, text-shadow 0.2s ease;
+    font-size:24px;
+    color:#fff;
+    margin:0 10px;
+  }
+
+  footer p {
+    color:#aaa;
+    font-size:14px;
+  }
+</style>
+<!-- Preloader -->
+<div id="preloader" style="position:fixed; top:0; left:0; width:100%; height:100%; background:#111; display:flex; justify-content:center; align-items:center; z-index:9999;">
+  <div style="width:50px; height:50px; border:5px solid #ff0055; border-top-color:transparent; border-radius:50%; animation: spin 1s linear infinite;"></div>
+</div>
+
+<style>
+  @keyframes spin {
+    0% {transform: rotate(0deg);}
+    100% {transform: rotate(360deg);}
+  }
+
+  section {
+    opacity:0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+
+  section.visible {
+    opacity:1;
+    transform: translateY(0);
+  }
+</style>
+
+<script>
+  // Preloader hide after page load
+  window.addEventListener('load', ()=>{
+    document.getElementById('preloader').style.display='none';
+
+    // Fade-in all sections
+    const sections = document.querySelectorAll('section');
+    sections.forEach((sec, index)=>{
+      setTimeout(()=>{
+        sec.classList.add('visible');
+      }, index*200);
+    });
+  });
+
+  // Optional: 3D finishing touches for hero/cube
+  const finalCube = cubeScene.children.find(obj => obj.type==='Mesh');
+  setInterval(()=>{
+    if(finalCube){
+      finalCube.rotation.x +=0.002;
+      finalCube.rotation.y +=0.003;
+      finalCube.material.emissiveIntensity = 0.4 + Math.sin(Date.now()*0.002)*0.3;
+    }
+  },16);
+</script>
